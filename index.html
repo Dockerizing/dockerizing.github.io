@@ -13,11 +13,11 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     </head>
-    <body>
+    <body data-spy="scroll" data-target="#navbar">
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <nav class="navbar navbar-default">
+        <nav id="navbar" class="navbar navbar-default">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -32,16 +32,11 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Virtuoso Container</a></li>
+                        <li><a href="#control">Container Control Script (Bootstrap)</a></li>
+                        <li><a href="#virtuoso">Virtuoso Container</a></li>
                         <li><a href="#">Import Container</a></li>
                         <li><a href="#">Backup Container</a></li>
                         <li><a href="#">OntoWiki Container</a></li>
-                        <li><a href="#">Control Container Script</a></li>
-<li><a href="#">Virtuoso Container</a></li>
-                        <li><a href="#">Import Container</a></li>
-                        <li><a href="#">Backup Container</a></li>
-                        <li><a href="#">OntoWiki Container</a></li>
-                        <li><a href="#">Control Container Script</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -53,10 +48,21 @@
                 <div class="page-header">
                     <h1>Dockerizing The Web Of Data <small>a tutorial page</small></h1>
                 </div>
+
                 <div class="row">
                     <div class="col-xs-10">
                         <div class="panel panel-default">
-                            <div class="panel-body">
+                            <div id="control" class="panel-body">
+                                <h3>Container Control Script <small>(Bootstrap)</small></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10">
+                        <div class="panel panel-default">
+                            <div id="virtuoso" class="panel-body">
                                 <h3>Virtuoso Container <small>(<a href="https://github.com/Dockerizing/triplestore-virtuoso7">@github</a>)</small></h3>
                                 <br />
                                 <p>This container provides <a href="http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/VOSIndex">OpenLink Virtuoso Open-Source</a> in a docker container. The container is not provided and maintained by OpenLink Software, so please don't blaim them for any malfunctions.</p>
@@ -65,37 +71,25 @@
                                 <p>You can run the container with the following command. Please provide a name to the container, you will need to link other containers with it. The -d option runs the container in detached mode (in the background).</p>
                                 <p>
                                     <code>
-                                        docker run -d --name="
-                                        <virtuoso container name>
-                                        " 
-                                        <other argument see below>
-                                        virtuoso7:latest
+                                        docker run -d --name="&lt;virtuoso container name&gt;" &lt;other argument see below&gt; virtuoso7:latest
                                     </code>
                                 </p>
                                 <p>The image comes with a fallback configuration file (virtuoso.ini) and will store teh database files in the containers filesystem in /var/lib/virtuoso/db/. If you want to persist the virtuoso database files on the host system you can mount a host directory as volume into the docker container. You will also need to provide a configuration file with it. The following argument includes the local directory to the container.</p>
                                 <p>
                                     <code>
-                                        -v 
-                                        <host virtuoso directory>
-                                        :/var/lib/virtuoso/dbs
+                                        -v &lt;host virtuoso directory&gt;:/var/lib/virtuoso/dbs
                                     </code>
                                 </p>
                                 <p>The default login for virtuoso is username and password dba. You are encouraged to change the default password to some secret with the environment variabel $PWDDBA as follows. (This environment variable will be available to other docer containers, which are linked to this container via the --link option.)</p>
                                 <p>
                                     <code>
-                                        -e PWDDBA="
-                                        <your secret goes here>
-                                        "
+                                        -e PWDDBA="&lt;your secret goes here&gt;"
                                     </code>
                                 </p>
                                 <p>If you want to access the virtuoso directly from your host you can also expose the virtuoso port (8890) and the ODBC port (1111) with the following arguments:</p>
                                 <p>
                                     <code>
-                                        -p 
-                                        <your virtuoso port>
-                                        :8890 -p 
-                                        <your odbc/jdbc port>
-                                        :1111
+                                        -p &lt;your virtuoso port&gt;:8890 -p &lt;your odbc/jdbc port&gt;:1111
                                     </code>
                                 </p>
                             </div>
