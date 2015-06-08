@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,95 +8,140 @@
         <title>Dockerizing The Web Of Data</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="css/costum.css">
+        <link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
     </head>
-    <body data-spy="scroll" data-target="#navbar">
+    <body data-spy="scroll" data-target="#sidebar">
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <nav id="navbar" class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Dockerizing</a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#control">Container Control Script (Bootstrap)</a></li>
-                        <li><a href="#virtuoso">Virtuoso Container</a></li>
-                        <li><a href="#">Import Container</a></li>
-                        <li><a href="#">Backup Container</a></li>
-                        <li><a href="#">OntoWiki Container</a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
+        <!-- Sidebar -->
+        <div id="wrapper">
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav" id="sidebar">
+                    <li class="sidebar-brand">
+                        <a href="#">
+                        Dockerizing
+                        </a>
+                    </li>
+                    <li><a href="#control">Container Control Script</a></li>
+                    <li><a href="#virtuoso">Virtuoso Container</a></li>
+                    <li><a href="#virtuoso-import">Virtuoso Import Container</a></li>
+                    <li><a href="#virtuoso-backup">Virtuoso Backup Container</a></li>
+                    <li><a href="#">OntoWiki Container</a></li>
+                </ul>
             </div>
-            <!-- /.container-fluid -->
-        </nav>
-        <div class="row">
-            <div class="col-xs-offset-1 col-xs-11">
-                <div class="page-header">
-                    <h1>Dockerizing The Web Of Data <small>a tutorial page</small></h1>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-10">
-                        <div class="panel panel-default">
-                            <div id="control" class="panel-body">
-                                <h3>Container Control Script <small>(Bootstrap)</small></h3>
+            <!-- /#sidebar-wrapper -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="page-header">
+                                <h1>Dockerizing The Web Of Data <small>a tutorial page</small></h1>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p>The purpose of this tutorial page is to show admins how easy it is to change their web-service infrastructure. This is possible with a micro-service architecture enabled through <a href="https://www.docker.com">docker</a> containers.<br />
+                                        The project focuses on a working environment for semantic web services.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="panel panel-default">
+                                        <div id="control" class="panel-body">
+                                            <h3>Container Control Script <small>(Bootstrap)</small></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="panel panel-default">
+                                        <div id="virtuoso" class="panel-body">
+                                            <h3>Virtuoso Container <small>(<a href="https://github.com/Dockerizing/triplestore-virtuoso7">@github</a>)</small></h3>
+                                            <br />
+                                            <p>This container provides <a href="http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/VOSIndex">OpenLink Virtuoso Open-Source</a> in a docker container. The container is not provided and maintained by OpenLink Software, so please don't blaim them for any malfunctions.</p>
+                                            <br />
+                                            <h4>Usage instructions</h4>
+                                            <p>You can run the container with the following command. Please provide a name to the container, you will need to link other containers with it. The -d option runs the container in detached mode (in the background).</p>
+                                            <p>
+                                                <code>
+                                                docker run -d --name="&lt;virtuoso container name&gt;" &lt;other argument see below&gt; virtuoso7:latest
+                                                </code>
+                                            </p>
+                                            <p>The image comes with a fallback configuration file (virtuoso.ini) and will store teh database files in the containers filesystem in /var/lib/virtuoso/db/. If you want to persist the virtuoso database files on the host system you can mount a host directory as volume into the docker container. You will also need to provide a configuration file with it. The following argument includes the local directory to the container.</p>
+                                            <p>
+                                                <code>
+                                                -v &lt;host virtuoso directory&gt;:/var/lib/virtuoso/dbs
+                                                </code>
+                                            </p>
+                                            <p>The default login for virtuoso is username and password dba. You are encouraged to change the default password to some secret with the environment variabel $PWDDBA as follows. (This environment variable will be available to other docer containers, which are linked to this container via the --link option.)</p>
+                                            <p>
+                                                <code>
+                                                -e PWDDBA="&lt;your secret goes here&gt;"
+                                                </code>
+                                            </p>
+                                            <p>If you want to access the virtuoso directly from your host you can also expose the virtuoso port (8890) and the ODBC port (1111) with the following arguments:</p>
+                                            <p>
+                                                <code>
+                                                -p &lt;your virtuoso port&gt;:8890 -p &lt;your odbc/jdbc port&gt;:1111
+                                                </code>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="panel panel-default">
+                                        <div id="virtuoso-backup" class="panel-body">
+                                            <h3>Virtuoso Backup Container <small>(<a href="https://github.com/GeorgesAlkhouri/virtuoso-backup-docker">@github</a>)</small></h3>
+                                            <p>This docker container provides a backup cron job for a linked Virtuoso Triple Store container.</p>
+                                            <br />
+                                            <h4>Usage instructions</h4>
+                                            <p>The container can be executed through the following example command:<br /></p>
+                                            <code>docker run -d --link '&lt;virtuoso container name&gt;':virtuoso -e GIT_REPO='&lt;ssh clone url&gt;' -e GIT_EMAIL='&lt;git email&gt;' -e GIT_NAME='&lt;git name&gt;' -v '&lt;.shh directory&gt;':/root/.ssh '&lt;docker image name&gt;'
+                                            </code>
+                                            <br /><br />
+                                            <p>The container provides the following environment variables which could be set through the <code>-e</code> parameter:</p>
+                                            <ul>
+                                                <li>GIT_REPO needs to be a SSH URL like <code>git@github.com:GeorgesAlkhouri/cron-backup-docker.git</code></li>
+                                                <li>GIT_EMAIL needs to be set</li>
+                                                <li>GIT_NAME needs to be set</li>
+                                                <li>CRONTAB by default this is set to a midnight build <code>(0 0 * * *)</code></li>
+                                            </ul>
+                                            <p>To authenticate with the backup GitHub repository the container uses SSH. Therefore the hosts .ssh folder will be injected to /root/.ssh in the containers file system through:</p>
+                                            <code>-v '&lt;.shh directory&gt;':/root/.ssh</code>
+                                            <br /><br />
+                                            <p>The hosts .ssh folder needs to contain the proper private ssh key and github.com needs to be added to the known_hosts file.
+                                                <br /><br />
+                                                Finally the backup repository needs the public ssh key.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="panel panel-default">
+                                        <div id="virtuoso-import" class="panel-body">
+                                            <h3>Virtuoso Import Container <small>(<a href="https://github.com/GeorgesAlkhouri/virtuoso-import-docker">@github</a>)</small></h3>
+                                            <p>The purpose of this docker is to load graph dumps into a linked virtuoso store container. <br /><br />
+                                                Dump data can be inserted to the import container through an exposed volume or with a git repository declared as an environment variable. To enable cloning of private git repositories the import container exposes its /root/.ssh folder for SSH key insertion. 
+                                                The link alias for the import container has to be virtuoso.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-10">
-                        <div class="panel panel-default">
-                            <div id="virtuoso" class="panel-body">
-                                <h3>Virtuoso Container <small>(<a href="https://github.com/Dockerizing/triplestore-virtuoso7">@github</a>)</small></h3>
-                                <br />
-                                <p>This container provides <a href="http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/VOSIndex">OpenLink Virtuoso Open-Source</a> in a docker container. The container is not provided and maintained by OpenLink Software, so please don't blaim them for any malfunctions.</p>
-                                <br />
-                                <h4>Usage instructions</h4>
-                                <p>You can run the container with the following command. Please provide a name to the container, you will need to link other containers with it. The -d option runs the container in detached mode (in the background).</p>
-                                <p>
-                                    <code>
-                                        docker run -d --name="&lt;virtuoso container name&gt;" &lt;other argument see below&gt; virtuoso7:latest
-                                    </code>
-                                </p>
-                                <p>The image comes with a fallback configuration file (virtuoso.ini) and will store teh database files in the containers filesystem in /var/lib/virtuoso/db/. If you want to persist the virtuoso database files on the host system you can mount a host directory as volume into the docker container. You will also need to provide a configuration file with it. The following argument includes the local directory to the container.</p>
-                                <p>
-                                    <code>
-                                        -v &lt;host virtuoso directory&gt;:/var/lib/virtuoso/dbs
-                                    </code>
-                                </p>
-                                <p>The default login for virtuoso is username and password dba. You are encouraged to change the default password to some secret with the environment variabel $PWDDBA as follows. (This environment variable will be available to other docer containers, which are linked to this container via the --link option.)</p>
-                                <p>
-                                    <code>
-                                        -e PWDDBA="&lt;your secret goes here&gt;"
-                                    </code>
-                                </p>
-                                <p>If you want to access the virtuoso directly from your host you can also expose the virtuoso port (8890) and the ODBC port (1111) with the following arguments:</p>
-                                <p>
-                                    <code>
-                                        -p &lt;your virtuoso port&gt;:8890 -p &lt;your odbc/jdbc port&gt;:1111
-                                    </code>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- !div row -->
                 </div>
             </div>
-        </div> <!-- !div row -->
+        </div>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     </body>
 </html>
-
-
