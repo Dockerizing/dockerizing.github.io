@@ -1,3 +1,13 @@
 .panel {
     background-color: #F8F8F8;
 }
+
+mark.yellow  {
+    background-color: yellow;
+    color: black;
+}
+
+mark.blue  {
+    background-color: lightSkyBlue ;
+    color: black;
+}
