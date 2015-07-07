@@ -110,9 +110,9 @@ The following shows an example of a config file. <mark class="yellow">Yellow</ma
 <pre>
 <mark class="yellow">datasets</mark>:
     - <mark class="yellow">dbpedia</mark>:
-        <mark class="yellow">graphUri</mark>: "http://dbpedia.org/"
+        <mark class="yellow">graphUri</mark>: "http://dbpedia.org"
         <mark class="yellow">location</mark>: "http://downloads.dbpedia.org/3.9/de/long_abstracts_en_uris_de.ttl.bz2"
-<mark class="yellow">setup</mark>:
+<mark class="yellow">components</mark>:
     <mark class="yellow">store</mark>:
         <mark class="blue">image</mark>: aksw/dld-store-virtuoso7
         <mark class="blue">volume</mark>: /tmp/volumes/virtuoso/
@@ -121,9 +121,6 @@ The following shows an example of a config file. <mark class="yellow">Yellow</ma
     <mark class="yellow">present</mark>:
         <mark class="yellow">ontowiki</mark>:
             <mark class="blue">image</mark>: aksw/dld-present-ontowiki
-            <mark class="blue">port</mark>: 8080
-        <mark class="yellow">pubby</mark>:
-            <mark class="blue">image</mark>: aksw/dld-present-pubby
             <mark class="blue">port</mark>: 8081
 </pre>
 
