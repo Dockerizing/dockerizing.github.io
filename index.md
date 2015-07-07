@@ -103,25 +103,36 @@ The following list explains all usable keywords in the config file:
     </di>
 </dl>
 
-The keywords `store`, `load`, `backup`, `ontowiki` and `pubby` are names for docker containers which the script will be create. Inside those statements you can configure the container with docker-compose. See the docker-compose [documention](https://docs.docker.com/compose/yml/) for YAML file references.
+The keys under `components` and `present` (e.g. `store`, `load`, `ontowiki`) will be part of the of the created docker containers. The corresponding values can be either just images namges or key-value mappings themselves. These sub-ordinated key-value pairs are copied unaltered as docker-compose settings for the created containers (see the [docker-compose YAML reference](https://docs.docker.com/compose/yml/).
 
-The following shows an example of a config file. <mark class="yellow">Yellow</mark> marked keywords are keywords introduced with the dld bootstrap architecture and <mark class="blue">blue</mark> marked keywords are docker-compose keywords.</p>
+The following shows an example of a config file. Keys marked in <mark class="yellow">Yellow</mark> are introduced and processed by the dld bootstrap architecture and keys marked in <mark class="blue">blue</mark> are docker-compose keys.</p>
 
 <pre>
 <mark class="yellow">datasets</mark>:
-    - <mark class="yellow">dbpedia</mark>:
-        <mark class="yellow">graphUri</mark>: "http://dbpedia.org"
-        <mark class="yellow">location</mark>: "http://downloads.dbpedia.org/3.9/de/long_abstracts_en_uris_de.ttl.bz2"
+    <mark class="yellow">dbpedia-abstracts-39</mark>:
+        <mark class="yellow">graphUri</mark>: "http://v39.dbpedia.org"
+        <mark class="yellow">location</mark>: "http://downloads.dbpedia.org/3.9/en/long_abstracts_en.ttl.bz2"
+    <mark class="yellow">dbpedia-abstracts-2014</mark>:
+        <mark class="yellow">graphUri</mark>: "http://v2014.dbpedia.org"
+        <mark class="yellow">location</mark>: "http://downloads.dbpedia.org/2014/en/long_abstracts_en.ttl.bz2"
+    <mark class="yellow">dbpedia-2015</mark>:
+        <mark class="yellow">location_list</mark>: "dbpedia-2015-selection.list"
+
 <mark class="yellow">components</mark>:
     <mark class="yellow">store</mark>:
         <mark class="blue">image</mark>: aksw/dld-store-virtuoso7
-        <mark class="blue">volume</mark>: /tmp/volumes/virtuoso/
+        <mark class="blue">ports</mark>: ["8891:8890"]
+        <mark class="blue">environment</mark>:
+            PWDDBA: super-secret
     <mark class="yellow">load</mark>:
         <mark class="blue">image</mark>: aksw/dld-load-virtuosoload
     <mark class="yellow">present</mark>:
         <mark class="yellow">ontowiki</mark>:
             <mark class="blue">image</mark>: aksw/dld-present-ontowiki
-            <mark class="blue">port</mark>: 8081
+            <mark class="blue">ports</mark>: ["8081:80"]
+
+<mark class="yellow">settings</mark>:
+    <mark class="yellow">default_graph</mark>: "http://dbpedia.org"
 </pre>
 
 <a id="container-list"></a>
