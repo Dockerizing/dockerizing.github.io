@@ -1,44 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <title>Dockerizing The Web Of Data</title>
-      <!-- Latest compiled and minified CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-      <link rel="stylesheet" type="text/css" href="css/costum.css">
-      <link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
-   </head>
-   <body data-spy="scroll" data-target="#sidebar">
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-      <!-- Sidebar -->
-      <div id="wrapper">
-         <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" id="sidebar">
-               <li class="sidebar-brand">
-                  <a href="#">
-                  Dockerizing
-                  </a>
-               </li>
-               <li><a href="#introduction">Introduction</a></li>
-               <li><a href="#requirements">Requirements</a></li>
-               <li><a href="#bootstrap">How To Use Bootstrap Script</a></li>
-               <ul>
-                  <li><a href="#ex-dbpedia">Example: DBpedia</a></li>
-                  <li><a href="#ex-prof">Example: Professorenkatalog</a></li>
-                  <li><a href="#ex-pfarrer">Example: Pfarrerbuch</a></li>
-                  <li><a href="#ex-custom">Custom Knowledgebase</a></li>
-               </ul>
-               <li><a href="#container-list">Container List</a></li>
-            </ul>
-         </div>
-         <!-- /#sidebar-wrapper -->
-         <div id="page-content-wrapper">
-            <div class="container-fluid">
+---
+layout: default
+---
                <div class="row">
                   <div class="col-xs-12">
                      <div id="introduction" class="page-header">
@@ -104,7 +66,7 @@
                                     <dd>Defines the different parts of your linked data environment.</dd>
                                     <dt>store</dt>
                                     <dd>Sets the triple store container you want to use. Can only be used inside a <code>setup</code> statement.
-                                       <br /> 
+                                       <br />
                                        Example: <br />
                                        <code>aksw/dld-store-virtuoso7</code>
                                     </dd>
@@ -169,10 +131,3 @@
                   </div>
                </div>
                <!-- !div row -->
-            </div>
-         </div>
-      </div>
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-   </body>
-</html>

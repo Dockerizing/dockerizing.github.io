@@ -1,0 +1,23 @@
+# Site settings
+title: Dockerizing The Web Of Data
+description: "Dockerizing Linked Data"
+baseurl: ""
+url: "https://dockerizing.github.io/"
+github_username:  dockerizing
+github_url: http://github.com/dockerizing
+
+contact:
+  - name: Natanael Arndt
+    email: arndt@informatik.uni-leipzig.de
+    github_username: white-gecko
+  - name: Markus Ackermann
+    email: ackermann@informatik.uni-leipzig.de
+    github_username: neradis
+
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+#gems:
+#- jekyll-last-modified-at
