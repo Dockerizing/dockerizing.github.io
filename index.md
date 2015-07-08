@@ -184,16 +184,15 @@ Keys marked in <mark class="yellow">yellow</mark> are introduced and processed b
 
 <a id="containers"></a>
 
-## List of Containers usable for the linked data environment
+## Available DLD Images
 
-<ul>
-    <li>Virtuoso 7 Container <a href="https://github.com/Dockerizing/triplestore-virtuoso7">@github</a></li>
-    <li>OntoWiki Container <a href="https://github.com/Dockerizing/OntoWiki">@github</a></li>
-    <li>Pubby Container <a href="https://github.com/Dockerizing/present-pubby">@github</a></li>
-    <li>Fuseki Container <a href="https://github.com/Dockerizing/fuseki-docker">@github</a></li>
-    <li>Virtuoso Import Container <a href="https://github.com/Dockerizing/virtuoso-import-docker">@github</a></li>
-    <li>Virtuoso Backup Container <a href="https://github.com/Dockerizing/virtuoso-backup-docker">@github</a></li>
-    <li>SNORQL Container <a href="https://github.com/Dockerizing/snorql-docker">@github</a></li>
-</ul>
+We are providing already some docker images for the usage in the dockerized linked data infrastructure.
+They are available [@github](http://github.com/dockerizing) and at the [docker registry-hub](https://registry.hub.docker.com/repos/aksw/) (watch out for the `dld-` prefix)
 
-<p>For all repositories see the <a href="https://github.com/dockerizing">Dockerizing</a> repository page.</p>
+* Virtuoso 7 Container `aksw/dld-store-virtuoso7` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-store-virtuoso7/), [@github](https://github.com/Dockerizing/triplestore-virtuoso7)
+* OntoWiki Container `aksw/dld-present-ontowiki` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-present-ontowiki/), [@github](https://github.com/Dockerizing/OntoWiki)
+* Pubby Container `aksw/dld-present-pubby` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-present-pubby/),  [@github](https://github.com/Dockerizing/present-pubby)
+* Fuseki Container `aksw/dld-store-fuseki` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-store-fuseki/), [@github](https://github.com/Dockerizing/fuseki-docker)
+* Virtuoso Import Container `aksw/dld-load-virtuoso` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-load-virtuoso/), [@github](https://github.com/Dockerizing/virtuoso-import-docker)
+* Virtuoso Backup Container `aksw/dld-backup-virtuoso` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-backup-virtuoso/), [@github](https://github.com/Dockerizing/virtuoso-backup-docker)
+* SNORQL Container `aksw/dld-present-snorql` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-present-snorql/), [@github](https://github.com/Dockerizing/snorql-docker)
