@@ -4,7 +4,8 @@ layout: default
 
 <a id="introduction"></a>
 
-# Dockerizing Linked Data <small>a tutorial page</small>
+# ![dld logo](dld-logo.svg) Dockerizing Linked Data <small>a tutorial page</small>
+
 
 Popular knowledge bases that provide SPARQL endpoints for the web are usually experiencing a high number of requests, which often results in low availability of their interfaces.
 A common approach to counter the availability issue is to run a local mirror of the knowledge base. Running a SPARQL endpoint is currently a complex task which requires a lot of effort and technical support for domain experts who just want to use the SPARQL interface.
