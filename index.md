@@ -12,14 +12,35 @@ A common approach to counter the availability issue is to run a local mirror of 
 With our approach of containerised knowledge base shipping we are introducing a simple to setup methodology for running a local mirror of an RDF knowledge base and SPARQL endpoint with interchangeable exploration components.
 The flexibility of the presented approach further also allows for maintaining publication infrastructures for dataset projects.
 
+# The dld.py Script in a Nutshell
 
-## Requirements
+We assume you have `git`, `python` (2.7 or 3.x, with `pip`) and `docker` running. If one of the requirements is mussing please take a look at the [requirements](#requirements) section.
+
+## Installation
+
+    $ git clone https://github.com/Dockerizing/dockerizing-bootstrap.git
+    $ cd dockerizing-bootstrap
+    $ sudo pip install -Ur requirements.txt
+
+## Run
+
+    $ cd examples/simple/
+    $ ../../dld.py
+    $ cd wd-dld
+    $ docker-composer up
+
+Now your SPARQL endpoint should be available at [http://localhost:8895/sparql](http://localhost:8895/sparql).
+
+**Try to execute a simple query: [`select * from <http://example.org/> { ?s ?p ?o }` (click here)](http://localhost:8895/sparql?query=select+*+from+<http%3A%2F%2Fexample.org%2F>+{+%3Fs+%3Fp+%3Fo+}).**
+
+# Requirements
 
 To run the presented infrastructure with full functionality you need to have the following programs installed:
 
 {:.dl-horizontal}
 [Docker Engine](http://docs.docker.com/installation/)
 : [Docker](https://docs.docker.com) is an open platform for easy application deployment in well-defined environments for developers and operators.
+http://docs.docker.com/linux/step_one/
 
 [Python 2.7](https://wiki.python.org/moin/BeginnersGuide/Download)
 : Some key Python libraries/tools utilized are:
@@ -34,13 +55,9 @@ To run the presented infrastructure with full functionality you need to have the
 
 <a id="bootstrap"></a>
 
-## How To Use Bootstrap Script
+# How to Use the Bootstrap Script
 
-To run your environment you need to download or clone the bootstrap git repository from [dockerizing-bootstrap@github](https://github.com/Dockerizing/dockerizing-bootstrap).
-
-    git clone https://github.com/Dockerizing/dockerizing-bootstrap.git
-
-You can then setup your environment through a YAML (.yml) config file, which will be read by the `dld.py` bootstrap script.
+You can configure your environment using a YAML (.yml) config file, which will be read by the `dld.py` bootstrap script.
 Just create a file named `dld.yml` and the script will look out for this file. The script behaviour can also be adjusted with
 some command line switches:
 
@@ -68,7 +85,7 @@ The provided [containers](#containers) of the resulting orchestration will co-or
 
 <a id="config"></a>
 
-## Understanding `-dld.yml` Configuration Files
+## Understanding the Configuration File
 
 The following list explains all usable keywords in the config file:
 
@@ -135,7 +152,8 @@ The keys under `components` and `present` (e.g. `store`, `load`, `ontowiki`) wil
 
 
 
-The following shows an example of a config file. Keys marked in <mark class="yellow">Yellow</mark> are introduced and processed by the dld bootstrap architecture and keys marked in <mark class="blue">blue</mark> are docker-compose keys.
+The following shows an example of a `dld.yml` file.
+Keys marked in <mark class="yellow">yellow</mark> are introduced and processed by the dld bootstrap architecture and keys marked in <mark class="blue">blue</mark> are docker-compose keys.
 
 <pre>
 <mark class="yellow">datasets</mark>:
