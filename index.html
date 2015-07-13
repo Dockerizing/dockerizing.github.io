@@ -35,17 +35,13 @@ $ docker-composer up
 </div>
 
 <div class="col-lg-12">
-<div class="alert alert-success" role="alert">
-Now your SPARQL endpoint should be available at <a href="http://localhost:8895/sparql">http://localhost:8895/sparql</a>.
-</div>
-
 <div class="bs-callout bs-callout-success">
     <div  style="float: left; padding-right: 20px">
         <a class="btn btn-lg btn-success" href="http://localhost:8895/sparql?query=select+*+from+<http%3A%2F%2Fexample.org%2F>+{+%3Fs+%3Fp+%3Fo+}">Run Query</a>
     </div>
     <div   style="float: left">
-    Try to execute a simple query on your new endpoint:<br/>
-    <code>select * from <http://example.org/> { ?s ?p ?o }</code>
+    Now your SPARQL endpoint should be available at <a href="http://localhost:8895/sparql">http://localhost:8895/sparql</a>.<br/>
+    Try to execute a simple query on your new endpoint: <code>select * from <http://example.org/> { ?s ?p ?o }</code>
     </div>
     <div style="clear: both" />
 </div>
