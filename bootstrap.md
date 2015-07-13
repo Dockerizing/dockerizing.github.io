@@ -1,60 +1,6 @@
 ---
-layout: default
+layout: doc
 ---
-
-<a id="introduction"></a>
-
-# ![dld logo](dld-logo.svg) Dockerizing Linked Data <small>a tutorial page</small>
-
-
-Popular knowledge bases that provide SPARQL endpoints for the web are usually experiencing a high number of requests, which often results in low availability of their interfaces.
-A common approach to counter the availability issue is to run a local mirror of the knowledge base. Running a SPARQL endpoint is currently a complex task which requires a lot of effort and technical support for domain experts who just want to use the SPARQL interface.
-
-With our approach of containerised knowledge base shipping we are introducing a simple to setup methodology for running a local mirror of an RDF knowledge base and SPARQL endpoint with interchangeable exploration components.
-The flexibility of the presented approach further also allows for maintaining publication infrastructures for dataset projects.
-
-# The dld.py Script in a Nutshell
-
-We assume you have `git`, `python` (2.7 or 3.x, with `pip`) and `docker` running. If one of the requirements is mussing please take a look at the [requirements](#requirements) section.
-
-## Installation
-
-    $ git clone https://github.com/Dockerizing/dockerizing-bootstrap.git
-    $ cd dockerizing-bootstrap
-    $ sudo pip install -Ur requirements.txt
-
-## Run
-
-    $ cd examples/simple/
-    $ ../../dld.py
-    $ cd wd-dld
-    $ docker-composer up
-
-Now your SPARQL endpoint should be available at [http://localhost:8895/sparql](http://localhost:8895/sparql).
-
-**Try to execute a simple query: [`select * from <http://example.org/> { ?s ?p ?o }` (click here)](http://localhost:8895/sparql?query=select+*+from+<http%3A%2F%2Fexample.org%2F>+{+%3Fs+%3Fp+%3Fo+}).**
-
-# Requirements
-
-To run the presented infrastructure with full functionality you need to have the following programs installed:
-
-{:.dl-horizontal}
-[Docker Engine](http://docs.docker.com/installation/)
-: [Docker](https://docs.docker.com) is an open platform for easy application deployment in well-defined environments for developers and operators.
-http://docs.docker.com/linux/step_one/
-
-[Python 2.7](https://wiki.python.org/moin/BeginnersGuide/Download)
-: Some key Python libraries/tools utilized are:
-
-    * [Docker Compose](https://docs.docker.com/compose/) (implying [docker-py](https://github.com/docker/docker-py/))
-    * [PyYAML](http://pyyaml.org/wiki/PyYAML)
-
-    [pip](https://pip.pypa.io/en/latest/installing.html) allows you to get required Python dependencies installed and/or updated with the `pip install -Ur requirements.txt` one-liner.
-
-[git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-: A free and open source distributed version control system.
-
-<a id="bootstrap"></a>
 
 # How to Use the Bootstrap Script
 
@@ -182,18 +128,3 @@ Keys marked in <mark class="yellow">yellow</mark> are introduced and processed b
 <mark class="yellow">settings</mark>:
     <mark class="yellow">default_graph</mark>: "http://dbpedia.org"
 </pre>
-
-<a id="containers"></a>
-
-## Available DLD Images
-
-We are providing already some docker images for the usage in the dockerized linked data infrastructure.
-They are available [@github](http://github.com/dockerizing) and at the [docker registry-hub](https://registry.hub.docker.com/repos/aksw/) (watch out for the `dld-` prefix)
-
-* Virtuoso 7 Container `aksw/dld-store-virtuoso7` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-store-virtuoso7/), [@github](https://github.com/Dockerizing/triplestore-virtuoso7)
-* OntoWiki Container `aksw/dld-present-ontowiki` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-present-ontowiki/), [@github](https://github.com/Dockerizing/OntoWiki)
-* Pubby Container `aksw/dld-present-pubby` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-present-pubby/),  [@github](https://github.com/Dockerizing/present-pubby)
-* Fuseki Container `aksw/dld-store-fuseki` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-store-fuseki/), [@github](https://github.com/Dockerizing/fuseki-docker)
-* Virtuoso Import Container `aksw/dld-load-virtuoso` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-load-virtuoso/), [@github](https://github.com/Dockerizing/virtuoso-import-docker)
-* Virtuoso Backup Container `aksw/dld-backup-virtuoso` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-backup-virtuoso/), [@github](https://github.com/Dockerizing/virtuoso-backup-docker)
-* SNORQL Container `aksw/dld-present-snorql` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-present-snorql/), [@github](https://github.com/Dockerizing/snorql-docker)

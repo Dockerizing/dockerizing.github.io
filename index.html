@@ -1,0 +1,52 @@
+---
+layout: home
+---
+<div class="col-lg-12">
+<p>Popular knowledge bases that provide SPARQL endpoints for the web are usually experiencing a high number of requests, which often results in low availability of their interfaces.
+A common approach to counter the availability issue is to run a local mirror of the knowledge base.
+Running a SPARQL endpoint is currently a complex task which requires a lot of effort and technical support for domain experts who just want to use the SPARQL interface.</p>
+<p>With our approach of containerised knowledge base shipping we are introducing a simple to setup methodology for running a local mirror of an RDF knowledge base and SPARQL endpoint with interchangeable exploration components.
+The flexibility of the presented approach further helps maintaining the publication infrastructure for dataset projects.</p>
+</div>
+
+<div class="col-lg-6">
+<h2>Installation</h2>
+
+<p>We assume you have <code>git</code>, <code>python</code> (2.7 or 3.x, with <code>pip</code>) and a <code>docker</code> daemon running.
+For further details please check the <a href="/requirements">requirements</a> section.</p>
+
+<pre>
+$ git clone https://github.com/Dockerizing/dockerizing-bootstrap
+$ cd dockerizing-bootstrap
+$ sudo pip install -Ur requirements.txt
+</pre>
+</div>
+
+
+<div class="col-lg-6">
+<h2>Run</h2>
+<pre>
+$ cd examples/simple/
+$ ../../dld.py
+$ cd wd-dld
+$ docker-composer up
+</pre>
+<p>See <a href="/bootstrap">How To Use Bootstrap Script</a> for more advanced setup.</p>
+</div>
+
+<div class="col-lg-12">
+<div class="alert alert-success" role="alert">
+Now your SPARQL endpoint should be available at <a href="http://localhost:8895/sparql">http://localhost:8895/sparql</a>.
+</div>
+
+<div class="bs-callout bs-callout-success">
+    <div  style="float: left; padding-right: 20px">
+        <a class="btn btn-lg btn-success" href="http://localhost:8895/sparql?query=select+*+from+<http%3A%2F%2Fexample.org%2F>+{+%3Fs+%3Fp+%3Fo+}">Run Query</a>
+    </div>
+    <div   style="float: left">
+    Try to execute a simple query on your new endpoint:<br/>
+    <code>select * from <http://example.org/> { ?s ?p ?o }</code>
+    </div>
+    <div style="clear: both" />
+</div>
+</div>

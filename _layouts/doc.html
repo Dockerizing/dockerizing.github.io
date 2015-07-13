@@ -7,7 +7,15 @@
     <!-- Sidebar -->
     <div id="wrapper">
         <div id="sidebar-wrapper">
-            {% include primary-nav-items.html %}
+            <ul class="sidebar-nav" id="sidebar">
+               <li class="sidebar-brand">
+                  <a href="#">
+                  <img src="/dld-logo.svg" alt="dld logo"/>
+                  Dockerizing
+                  </a>
+               </li>
+               {% include primary-nav-items.html %}
+            </ul>
         </div>
         <!-- /#sidebar-wrapper -->
         <div id="page-content-wrapper">
