@@ -1,6 +1,6 @@
 # Site settings
-title: Dockerizing The Web Of Data
-description: "Dockerizing Linked Data"
+title: Dockerizing Linked Data
+description: "Dockerizing Linked Data: Knowledge Base Shipping to the Linked Open Data Cloud Using a Docker Infrastrucutre"
 baseurl: ""
 url: "https://dockerizing.github.io/"
 github_username:  dockerizing

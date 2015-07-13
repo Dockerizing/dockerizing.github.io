@@ -31,6 +31,19 @@ p a:before {
   padding-right: .25em;
 }
 
+footer h2 {
+    font-size: 16pt;
+}
+
+.github-icon-svg,
+.twitter-icon-svg {
+display: inline-block;
+width: 16px;
+height: 16px;
+position: relative;
+top: 3px;
+}
+
 /*
  Bootstrap Callouts
  Source: http://cpratt.co/twitter-bootstrap-callout-css-styles/
