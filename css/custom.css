@@ -25,6 +25,12 @@ mark.blue  {
     color: #fff;
 }
 
+p a:before {
+  font-family: 'Glyphicons Halflings';
+  content: "\e127";
+  padding-right: .25em;
+}
+
 /*
  Bootstrap Callouts
  Source: http://cpratt.co/twitter-bootstrap-callout-css-styles/
