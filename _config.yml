@@ -2,7 +2,8 @@
 title: Dockerizing Linked Data
 description: "Dockerizing Linked Data: Knowledge Base Shipping to the Linked Open Data Cloud Using a Docker Infrastrucutre"
 baseurl: ""
-url: "https://dockerizing.github.io/"
+url: "https://dockerizing.github.io"
+#url: "http://127.0.0.1:4000"
 github_username:  dockerizing
 github_url: http://github.com/dockerizing
 
