@@ -45,7 +45,7 @@ $ sudo docker run --rm hello-world
 
 ##Install Docker Compose
 
-To install Docker Compose, an installation of Docker (see the point above) is required. Make shure that your `/usr/local/bin` directory is writable.
+<p>To install Docker Compose, an installation of Docker (see the point above) is required. Make shure that your `/usr/local/bin` directory is writable.</p>
 
 <p>Open a terminal and execute the following commands:</p>
 Get Docker Compose
@@ -63,4 +63,17 @@ docker-compose --version
 
 ##Install pip
 
-Text
+<p>The Python package repository pip is already included by default in the following Python versions:</p>
+<ul>
+<li>Python 2.7.9 and later versions on the python 2 series</li>
+<li>Python 3.4 and later version</li>
+</ul> 
+On other Versions you have to install pip through the following terminal commands:
+<pre>
+$ sudo python get-pip.py
+</pre>
+You can also use the OS Package Manager (for example on Debian) to install pip
+<pre>
+$ sudo apt-get install python-pip
+</pre>
+
