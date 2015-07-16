@@ -12,6 +12,10 @@ mark.blue  {
     color: white;
 }
 
+span.comment {
+    color: #C71585;
+}
+
 .jumbotron h1, .jumbotron .h1 {
     font-size: 36pt;
 }
