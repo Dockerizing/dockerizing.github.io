@@ -22,6 +22,7 @@ http://docs.docker.com/linux/step_one/
 [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 : A free and open source distributed version control system.
 
+
 ##Install Docker
 
 <p>Docker supports an installation on many systems. Exemplarily you can find the installation instructions on Debian Jessie 8.0 (64-bit). If you use another system, please see the <a href="https://docs.docker.com/installation/" target="_blank">Docker documentation</a>.</p>
@@ -42,7 +43,6 @@ $ sudo docker run --rm hello-world
 </pre> 
 
 
-
 ##Install Docker Compose
 
 <p>To install Docker Compose, an installation of Docker (see the point above) is required. Make shure that your `/usr/local/bin` directory is writable.</p>
@@ -50,19 +50,23 @@ $ sudo docker run --rm hello-world
 <p>Open a terminal and execute the following commands:</p>
 Get Docker Compose
 <pre>
-curl -L https://github.com/docker/compose/releases/download/1.3.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+$ curl -L https://github.com/docker/compose/releases/download/1.3.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 </pre>
 Make Docker Compose executable
 <pre>
-chmod +x /usr/local/bin/docker-compose
+$ chmod +x /usr/local/bin/docker-compose
 </pre>
 Verify the Compose installation
 <pre>
-docker-compose --version
+$ docker-compose --version
 </pre>
 
-##Install pip
 
+##Install Python and pip
+Install the latest Python package
+<pre>
+$ apt-get install python
+</pre> 
 <p>The Python package repository pip is already included by default in the following Python versions:</p>
 <ul>
 <li>Python 2.7.9 and later versions on the python 2 series</li>
