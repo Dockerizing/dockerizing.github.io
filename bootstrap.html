@@ -1,0 +1,230 @@
+---
+layout: home
+---
+
+<div class="col-lg-12">
+
+<h1>How to Use the Bootstrap Script</h1>
+
+<p>You can configure your environment using a YAML (.yml) config file, which will be read by the <code>dld.py</code> bootstrap script.
+Just create a file named <code>dld.yml</code> and the script will look out for this file. The script behaviour can also be adjusted with
+some command line switches:</p>
+
+<dl>
+  <dt><code>-c</code> or <code>--config</code></dt>
+  <dd>specifies to load the <a href="#config">configuraion YAML</a> from another file path</dd>
+  <dt><code>-f</code> or <code>--file</code></dt>
+  <dd>specifies on-the-fly a local dump file to be imported (equivalent to a <code>datasets</code> entry with a <code>file</code> key)</dd>
+  <dt><code>-l</code> or <code>--location</code></dt>
+  <dd>specifies on-the-fly a dump file on the web to be downloaded and imported (equivalent to a <code>datasets</code> entry with a <code>file</code> key)</dd>
+  <dt><code>-u</code> or <code>--uri</code></dt>
+  <dd>specifies on-the-fly the default graph name ((equivalent to the <code>default_graph</code> key under <code>settings</code>)</dd>
+  <dt><code>-w</code> or <code>--working-directory</code></dt>
+  <dd>specifies to where to place the Docker Compose configuration and dataset dumps copies/download for import</dd>
+</dl>
+
+<p><code>dld.py</code> will process the <a href="#config">configuraion YAML</a>, taking care of the following steps for you:</p>
+
+<ul>
+  <li>collecting (by copy or download) specified RDF dump files into a single location provided to the <strong>load</strong> component</li>
+  <li>generate a Docker Compose configuration file defining containers as specified establishing appropirates <a href="http://docs.docker.com/userguide/dockerlinks/">links</a>, <a href="http://docs.docker.com/userguide/dockervolumes/">(shared) volumes</a> and <a href="http://docs.docker.com/userguide/usingdocker/#viewing-our-web-application-container">exposed ports to the host system</a> to enable you to interact with front-end components in your browser</li>
+</ul>
+
+<p>The provided <a href="#containers">containers</a> of the resulting orchestration will co-ordinate themselves so that <strong>load</strong> components will perform bulk-imports to the <strong>store</strong> component. <strong>present</strong> components will know how to use the SPARQL-endpoint exposed by the <strong>store</strong> to allow for navigation (and possibly authoring).</p>
+
+<h2>Understanding the Configuration File</h2>
+
+<p>The main part of the scripts work is to translate the dld.yml file to a Docker Compose file. The script also downloads or copys your data into a given or default working directory and let the docker compose file know where your data is.<br/><br/>
+  With the following list you can understand all usable keywords usable within the dld configuration file:</p>
+
+<dl class="dl-horizontal">
+    <di>
+        <dt>datasets</dt>
+        <dd>Defines the set of datasources to be preloaded and used.</dd>
+    </di>
+    <di>
+        <dt>graph_name</dt>
+        <dd>Specifies the base URI for the data set. Can only be used inside a <code>datasets</code> statement.</dd>
+    </di>
+    <di>
+        <dt>location</dt>
+        <dd>Points to a dump file on the web. Can only be used inside a <code>datasets</code> statement.</dd>
+    </di>
+    <di>
+        <dt>location_list</dt>
+        <dd>Points to a local file listing dump files on the web to download and import. (One URL per line, empty lines allowed.) Can only be used inside a <code>datasets</code> statement.</dd>
+    </di>
+    <di>
+        <dt>file</dt>
+        <dd>Points to a local file dump. Can only be used inside a <code>datasets</code> statement.</dd>
+    </di>
+    <di>
+        <dt>file_list</dt>
+        <dd>Points to a local file listing dump files to import. (One file path per line, empty lines allowed.) Can only be used inside a <code>datasets</code> statement.</dd>
+    </di>
+</dl>
+
+<dl class="dl-horizontal">
+
+    <dt>settings</dt>
+    <dd>Defines the set of settings.</dd>
+
+    <dt>default_graph</dt>
+    <dd>Sets the default graph for the triple store. Can only be used inside a <code>settings</code> statement.</dd>
+
+</dl>
+
+<dl class="dl-horizontal">
+    <di>
+        <dt>components</dt>
+        <dd>Defines the different parts of your linked data environment as key-value mappings. Each value is either just an image name or a key-value mapping for further container configuration.</dd>
+    </di>
+    <di>
+        <dt>store</dt>
+        <dd>Sets the triple store container you want to use. Can only be used inside a <code>components</code> statement.
+            <br />
+            Example: <code>aksw/dld-store-virtuoso7</code>
+        </dd>
+    </di>
+    <di>
+        <dt>load</dt>
+        <dd>Sets a component to perform bulk import into the store. Can only be used inside a <code>components</code> statement.</dd>
+    </di>
+    <di>
+        <dt>present</dt>
+        <dd>Collection of presentation components for your linked datasets. Either just an image name or a key-value mapping for further container configuration. Can only be used inside a <code>components</code> statement.<br />
+            Example: <code>aksw/dld-present-ontowiki</code>
+        </dd>
+    </di>
+    <!-- <di>
+        <dt>ontowiki</dt>
+        <dd>A visual presentation layer of your knowledge base. Can only be used inside a <code>present</code> statement.</dd>
+    </di>
+    <di>
+        <dt>pubby</dt>
+        <dd>A visual presentation layer of your knowledge base. Can only be used inside a <code>present</code> statement.</dd>
+    </di> -->
+</dl>
+
+<p>The keys under <code>components</code> and <code>present</code> (e.g. <code>store</code>, <code>load</code>, <code>ontowiki</code>) will be part of the created docker containers. The corresponding values can be either just image names or key-value mappings themselves. These sub-ordinated key-value pairs are copied unaltered as docker-compose settings for the created containers (see the <a href="https://docs.docker.com/compose/yml/">docker-compose YAML reference</a>).
+</p>
+
+<h2>Example</h2>
+
+<p>The following shows a simple example of a `dld.yml` file.
+Keys marked in <mark class="yellow">yellow</mark> are introduced and processed by the dld bootstrap script and keys marked in <mark class="blue">blue</mark> are docker-compose keys.
+</p>
+
+</div>
+
+<div class="col-lg-6">
+<h4>Simple dld.yml file</h4>
+<pre>
+
+<mark class="yellow">datasets</mark>:
+    site: <span class="comment">#identifier for dataset</span>
+        <mark class="yellow">graph_name</mark>: "http://example.org/"
+        <mark class="yellow">file</mark>: "hello.ttl"
+
+<mark class="yellow">components</mark>:
+    <mark class="yellow">store</mark>:
+        <mark class="blue">image</mark>: aksw/dld-store-virtuoso7
+        <mark class="blue">ports</mark>: ["8895:8890"]
+        <mark class="blue">environment</mark>:
+            PWDDBA: "dba"
+    <mark class="yellow">load</mark>:
+        <mark class="blue">image</mark>: aksw/dld-load-virtuoso
+
+    <mark class="yellow">settings</mark>:
+        <mark class="yellow">default_graph</mark>: "http://example.org/"
+
+</pre>
+
+</div>
+
+
+<div class="col-lg-6">
+<h4>Output for Docker Compose</h4>
+<pre>
+
+load:
+  environment: {DEFAULT_GRAPH: 'http://example.org/'}
+  image: aksw/dld-load-virtuoso
+  links: [store]
+  volumes: ['/usr/src/app/examples/simple/wd-dld/models:/import']
+  volumes_from: [store]
+store:
+  environment: {DEFAULT_GRAPH: 'http://example.org/', PWDDBA: dba}
+  image: aksw/dld-store-virtuoso7
+  ports: ['8895:8890']
+
+</pre>
+</div>
+
+<div class="col-lg-12">
+
+  <p>And know a more complicated example. Again, the <mark class="yellow">yellow</mark> marked keys are processed by the dld bootstrap script and keys marked in <mark class="blue">blue</mark> are docker-compose keys.</p>
+
+</div>
+
+<div class="col-lg-6">
+<h4>Complicated dld.yml file</h4>
+<pre>
+
+  <mark class="yellow">datasets</mark>:
+      site:
+          <mark class="yellow">graph_name</mark>: "http://pfarrerbuch.comiles.eu/"
+          <mark class="yellow">file</mark>: "pfarrerbuch.ttl"
+      sachsen:
+          <mark class="yellow">graph_name</mark>: "http://pfarrerbuch.comiles.eu/sachsen/"
+          <mark class="yellow">file</mark>: "sachsen.ttl"
+      hp-vocab:
+          <mark class="yellow">graph_name</mark>: "http://purl.org/voc/hp/"
+          <mark class="yellow">file</mark>: "hp-vocab.ttl"
+
+  <mark class="yellow">components</mark>:
+      <mark class="yellow">store</mark>:
+          <mark class="blue">image</mark>: aksw/dld-store-virtuoso7
+          <mark class="blue">volume</mark>: /tmp/volumes/virtuoso/
+          <mark class="blue">environment</mark>:
+              PWDDBA: "aslkdcoiqwecpqow"
+      <mark class="yellow">load</mark>:
+          <mark class="blue">image</mark>: aksw/dld-load-virtuoso
+      <mark class="yellow">backup</mark>:
+          <mark class="blue">image</mark>: to be done aksw/dld-backup-virtuoso
+          <mark class="yellow">target</mark>:
+              <mark class="yellow">git</mark>: git@git.aksw.org:/pfarrerbuch.models
+              <mark class="yellow">sshkey</mark>: "id_rsa"
+      <mark class="yellow">present</mark>:
+          ontowiki:
+              <mark class="blue">image</mark>: to be done aksw/dld-present-pfarrerbuch
+              <mark class="blue">port</mark>: 8080
+
+          <mark class="yellow">settings</mark>:
+              <mark class="yellow">default_graph</mark>: "http://pfarrerbuch.comiles.eu/"
+
+</pre>
+</div>
+
+<div class="col-lg-6">
+<h4>Output for Docker Compose</h4>
+<pre>
+
+  load:
+    environment: {DEFAULT_GRAPH: 'http://pfarrerbuch.comiles.eu/'}
+    image: aksw/dld-load-virtuoso
+    links: [store]
+    volumes: ['/usr/src/app/examples/pfarrerbuch/wd-dld/models:/import']
+    volumes_from: [store]
+  presentontowiki:
+    environment: {DEFAULT_GRAPH: 'http://pfarrerbuch.comiles.eu/'}
+    image: to be done aksw/dld-present-pfarrerbuch
+    links: [store]
+    port: 8080
+  store:
+    environment: {DEFAULT_GRAPH: 'http://pfarrerbuch.comiles.eu/', PWDDBA: aslkdcoiqwecpqow}
+    image: aksw/dld-store-virtuoso7
+    volume: /tmp/volumes/virtuoso/
+
+</pre>
+</div>
