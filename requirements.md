@@ -81,3 +81,12 @@ You can also use the OS Package Manager (for example on Debian) to install pip
 $ sudo apt-get install python-pip
 </pre>
 
+##Complete requirements installation
+Just copy the following commands and paste them into the terminal
+<pre>
+sudo apt-get update && \
+    apt-get -y install docker.io && \
+    curl -L https://github.com/docker/compose/releases/download/1.3.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && \
+    chmod +x /usr/local/bin/docker-compose && \
+    apt-get -y install python-pip
+</pre>
