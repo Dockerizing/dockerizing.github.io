@@ -30,8 +30,6 @@ some command line switches:
 
 The provided [containers](#containers) of the resulting orchestration will co-ordinate themselves so that **load** components will perform bulk-imports to the **store** component. **present** components will know how to use the SPARQL-endpoint exposed by the **store** to allow for navigation (and possibly authoring).
 
-<a id="config"></a>
-
 ## Understanding the Configuration File
 
 The following list explains all usable keywords in the config file:
@@ -40,6 +38,10 @@ The following list explains all usable keywords in the config file:
     <di>
         <dt>datasets</dt>
         <dd>Defines the set of datasources to be preloaded and used.</dd>
+    </di>
+    <di>
+        <dt>site</dt>
+        <dd></dd>
     </di>
     <di>
         <dt>graph_name</dt>
@@ -61,6 +63,16 @@ The following list explains all usable keywords in the config file:
         <dt>file_list</dt>
         <dd>Points to a local file listing dump files to import. (One file path per line, empty lines allowed.) Can only be used inside a <code>datasets</code> statement.</dd>
     </di>
+</dl>
+
+<dl class="dl-horizontal">
+
+    <dt>settings</dt>
+    <dd></dd>
+
+    <dt>default_graph</dt>
+    <dd></dd>
+
 </dl>
 
 <dl class="dl-horizontal">
@@ -95,36 +107,53 @@ The following list explains all usable keywords in the config file:
     </di>
 </dl>
 
-The keys under `components` and `present` (e.g. `store`, `load`, `ontowiki`) will be part of the of the created docker containers. The corresponding values can be either just images namges or key-value mappings themselves. These sub-ordinated key-value pairs are copied unaltered as docker-compose settings for the created containers (see the [docker-compose YAML reference](https://docs.docker.com/compose/yml/)).
+The keys under `components` and `present` (e.g. `store`, `load`, `ontowiki`) will be part of the created docker containers. The corresponding values can be either just images namges or key-value mappings themselves. These sub-ordinated key-value pairs are copied unaltered as docker-compose settings for the created containers (see the [docker-compose YAML reference](https://docs.docker.com/compose/yml/)).
 
+## Example
 
+The following shows a simple example of a `dld.yml` file.
+Keys marked in <mark class="yellow">yellow</mark> are introduced and processed by the dld bootstrap script and keys marked in <mark class="blue">blue</mark> are docker-compose keys.
 
-The following shows an example of a `dld.yml` file.
-Keys marked in <mark class="yellow">yellow</mark> are introduced and processed by the dld bootstrap architecture and keys marked in <mark class="blue">blue</mark> are docker-compose keys.
-
+<div class="col-lg-6">
+<h4>Simple dld.yml file</h4>
 <pre>
+
+<mark class="yellow">settings</mark>:
+    <mark class="yellow">default_graph</mark>: "http://example.org/"
+
 <mark class="yellow">datasets</mark>:
-    <mark class="yellow">dbpedia-abstracts-39</mark>:
-        <mark class="yellow">graph_name</mark>: "http://v39.dbpedia.org"
-        <mark class="yellow">location</mark>: "http://downloads.dbpedia.org/3.9/en/long_abstracts_en.ttl.bz2"
-    <mark class="yellow">dbpedia-abstracts-2014</mark>:
-        <mark class="yellow">graph_name</mark>: "http://v2014.dbpedia.org"
-        <mark class="yellow">location</mark>: "http://downloads.dbpedia.org/2014/en/long_abstracts_en.ttl.bz2"
-    <mark class="yellow">dbpedia-2015</mark>:
-        <mark class="yellow">location_list</mark>: "dbpedia-2015-selection.list"
+    <mark class="yellow">site</mark>:
+        <mark class="yellow">graph_name</mark>: "http://example.org/"
+        <mark class="yellow">file</mark>: "hello.ttl"
 
 <mark class="yellow">components</mark>:
     <mark class="yellow">store</mark>:
         <mark class="blue">image</mark>: aksw/dld-store-virtuoso7
-        <mark class="blue">ports</mark>: ["8891:8890"]
+        <mark class="blue">ports</mark>: ["8895:8890"]
         <mark class="blue">environment</mark>:
-            PWDDBA: super-secret
-    <mark class="yellow">load</mark>: aksw/dld-load-virtuosoload
-    <mark class="yellow">present</mark>:
-        <mark class="yellow">ontowiki</mark>:
-            <mark class="blue">image</mark>: aksw/dld-present-ontowiki
-            <mark class="blue">ports</mark>: ["8081:80"]
+            PWDDBA: "dba"
+    <mark class="yellow">load</mark>:
+        <mark class="blue">image</mark>: aksw/dld-load-virtuoso
 
-<mark class="yellow">settings</mark>:
-    <mark class="yellow">default_graph</mark>: "http://dbpedia.org"
 </pre>
+
+</div>
+
+
+<div class="col-lg-6">
+<h4>Output for Docker Compose</h4>
+<pre>
+
+load:
+  environment: {DEFAULT_GRAPH: 'http://example.org/'}
+  image: aksw/dld-load-virtuoso
+  links: [store]
+  volumes: ['/usr/src/app/examples/simple/wd-dld/models:/import']
+  volumes_from: [store]
+store:
+  environment: {DEFAULT_GRAPH: 'http://example.org/', PWDDBA: dba}
+  image: aksw/dld-store-virtuoso7
+  ports: ['8895:8890']
+
+</pre>
+</div>

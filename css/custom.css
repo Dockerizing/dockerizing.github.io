@@ -3,13 +3,13 @@
 }
 
 mark.yellow  {
-    background-color: yellow;
+    background-color: #FFF380;
     color: black;
 }
 
 mark.blue  {
-    background-color: lightSkyBlue ;
-    color: black;
+    background-color: rgb(48, 185, 233);
+    color: white;
 }
 
 .jumbotron h1, .jumbotron .h1 {

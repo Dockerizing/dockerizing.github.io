@@ -5,7 +5,7 @@ layout: home
 # Available DLD Images
 
 We are providing already some docker images for the usage in the dockerized linked data infrastructure.
-They are available [@github](http://github.com/dockerizing) and at the [docker registry-hub](https://registry.hub.docker.com/repos/aksw/) (watch out for the `dld-` prefix)
+They are available [github](http://github.com/dockerizing) and at the [docker registry-hub](https://registry.hub.docker.com/repos/aksw/) (watch out for the `dld-` prefix)
 
 * Virtuoso 7 Container `aksw/dld-store-virtuoso7` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-store-virtuoso7/), [@github](https://github.com/Dockerizing/triplestore-virtuoso7)
 * OntoWiki Container `aksw/dld-present-ontowiki` [docker registry-hub](https://registry.hub.docker.com/u/aksw/dld-present-ontowiki/), [@github](https://github.com/Dockerizing/OntoWiki)
