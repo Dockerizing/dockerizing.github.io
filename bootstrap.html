@@ -20,7 +20,7 @@ some command line switches:</p>
   <dt><code>-u</code> or <code>--uri</code></dt>
   <dd>specifies on-the-fly the default graph name ((equivalent to the <code>default_graph</code> key under <code>settings</code>)</dd>
   <dt><code>-w</code> or <code>--working-directory</code></dt>
-  <dd>specifies to where to place the Docker Compose configuration and dataset dumps copies/download for import</dd>
+  <dd>specifies where to place the Docker Compose configuration and dataset dumps copies/download for import</dd>
 </dl>
 
 <p><code>dld.py</code> will process the <a href="#config">configuraion YAML</a>, taking care of the following steps for you:</p>
@@ -30,12 +30,12 @@ some command line switches:</p>
   <li>generate a Docker Compose configuration file defining containers as specified establishing appropirates <a href="http://docs.docker.com/userguide/dockerlinks/">links</a>, <a href="http://docs.docker.com/userguide/dockervolumes/">(shared) volumes</a> and <a href="http://docs.docker.com/userguide/usingdocker/#viewing-our-web-application-container">exposed ports to the host system</a> to enable you to interact with front-end components in your browser</li>
 </ul>
 
-<p>The provided <a href="#containers">containers</a> of the resulting orchestration will co-ordinate themselves so that <strong>load</strong> components will perform bulk-imports to the <strong>store</strong> component. <strong>present</strong> components will know how to use the SPARQL-endpoint exposed by the <strong>store</strong> to allow for navigation (and possibly authoring).</p>
+<p>The provided <a href="#containers">containers</a> of the resulting orchestration will coordinate themselves so that <strong>load</strong> components will perform bulk-imports to the <strong>store</strong> component. <strong>present</strong> components will know how to use the SPARQL-endpoint exposed by the <strong>store</strong> to allow for navigation (and possibly authoring).</p>
 
 <h2>Understanding the Configuration File</h2>
 
 <p>The main part of the scripts work is to translate the dld.yml file to a Docker Compose file. The script also downloads or copys your data into a given or default working directory and let the docker compose file know where your data is.<br/><br/>
-  With the following list you can understand all usable keywords usable within the dld configuration file:</p>
+  With the following list you can understand all keywords usable within the dld configuration file:</p>
 
 <dl class="dl-horizontal">
     <di>
@@ -163,7 +163,7 @@ store:
 
 <div class="col-lg-12">
 
-  <p>And know a more complicated example. Again, the <mark class="yellow">yellow</mark> marked keys are processed by the dld bootstrap script and keys marked in <mark class="blue">blue</mark> are docker-compose keys.</p>
+  <p>And now a more complicated example. Again, the <mark class="yellow">yellow</mark> marked keys are processed by the dld bootstrap script and keys marked in <mark class="blue">blue</mark> are docker-compose keys.</p>
 
 </div>
 
