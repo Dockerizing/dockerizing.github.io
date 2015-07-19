@@ -148,15 +148,23 @@ Keys marked in <mark class="yellow">yellow</mark> are introduced and processed b
 <pre>
 
 load:
-  environment: {DEFAULT_GRAPH: 'http://example.org/'}
+  environment:
+    DEFAULT_GRAPH: 'http://example.org/'
   image: aksw/dld-load-virtuoso
-  links: [store]
-  volumes: ['/usr/src/app/examples/simple/wd-dld/models:/import']
-  volumes_from: [store]
+  links:
+    - store
+  volumes:
+    - '/usr/src/app/examples/simple/wd-dld/models:/import'
+  volumes_from:
+    - store
+
 store:
-  environment: {DEFAULT_GRAPH: 'http://example.org/', PWDDBA: dba}
+  environment:
+    DEFAULT_GRAPH: 'http://example.org/'
+    PWDDBA: dba
   image: aksw/dld-store-virtuoso7
-  ports: ['8895:8890']
+  ports:
+    - '8895:8890'
 
 </pre>
 </div>
@@ -191,14 +199,14 @@ store:
       <mark class="yellow">load</mark>:
           <mark class="blue">image</mark>: aksw/dld-load-virtuoso
       <mark class="yellow">backup</mark>:
-          <mark class="blue">image</mark>: to be done aksw/dld-backup-virtuoso
+          <mark class="blue">image</mark>: aksw/dld-backup-virtuoso
           <mark class="yellow">target</mark>:
               <mark class="yellow">git</mark>: git@git.aksw.org:/pfarrerbuch.models
               <mark class="yellow">sshkey</mark>: "id_rsa"
       <mark class="yellow">present</mark>:
           ontowiki:
-              <mark class="blue">image</mark>: to be done aksw/dld-present-pfarrerbuch
-              <mark class="blue">port</mark>: 8080
+              <mark class="blue">image</mark>: aksw/dld-present-pfarrerbuch
+              <mark class="blue">ports</mark>: '8080:80'
 
           <mark class="yellow">settings</mark>:
               <mark class="yellow">default_graph</mark>: "http://pfarrerbuch.comiles.eu/"
@@ -211,18 +219,30 @@ store:
 <pre>
 
   load:
-    environment: {DEFAULT_GRAPH: 'http://pfarrerbuch.comiles.eu/'}
+    environment:
+        DEFAULT_GRAPH: 'http://pfarrerbuch.comiles.eu/'
     image: aksw/dld-load-virtuoso
-    links: [store]
-    volumes: ['/usr/src/app/examples/pfarrerbuch/wd-dld/models:/import']
-    volumes_from: [store]
+    links:
+        - store
+    volumes:
+        - '/usr/src/app/examples/pfarrerbuch/wd-dld/models:/import'
+    volumes_from:
+        - store
+
   presentontowiki:
-    environment: {DEFAULT_GRAPH: 'http://pfarrerbuch.comiles.eu/'}
-    image: to be done aksw/dld-present-pfarrerbuch
-    links: [store]
-    port: 8080
+    environment:
+        DEFAULT_GRAPH: 'http://pfarrerbuch.comiles.eu/'
+    image:
+        - aksw/dld-present-pfarrerbuch
+    links:
+        - store
+    ports:
+        - '8080:80'
+
   store:
-    environment: {DEFAULT_GRAPH: 'http://pfarrerbuch.comiles.eu/', PWDDBA: aslkdcoiqwecpqow}
+    environment:
+        DEFAULT_GRAPH: 'http://pfarrerbuch.comiles.eu/'
+        PWDDBA: aslkdcoiqwecpqow
     image: aksw/dld-store-virtuoso7
     volume: /tmp/volumes/virtuoso/
 
