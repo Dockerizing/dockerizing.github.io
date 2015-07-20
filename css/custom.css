@@ -39,6 +39,10 @@ footer h2 {
     font-size: 16pt;
 }
 
+footer h3 {
+    font-size: 14pt;
+}
+
 .github-icon-svg,
 .twitter-icon-svg {
 display: inline-block;

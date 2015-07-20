@@ -14,6 +14,19 @@ contact:
   - name: Markus Ackermann
     email: ackermann@informatik.uni-leipzig.de
     github_username: neradis
+  - name: Martin Brümmer
+    email: bruemmer@informatik.uni-leipzig.de
+    github_username: der-bruemmer
+  - name: Thomas Riechert
+    email: thomas.riechert@htwk-leipzig.d
+    github_username: triechert
+
+support:
+  - name: Georges Alkhouri
+    github_username: GeorgesAlkhouri
+  - name: Tom Neumann
+    github_username: TomNeumann
+
 
 
 # Build settings
