@@ -31,13 +31,13 @@ If you'd like to know more about, what the things do, better keep reading.
 Creat a new directory and change into it.
 Just copy the following commands and paste them into the terminal:
 
-    sudo apt-get update &amp;&amp; \
-    apt-get -y install docker.io &amp;&amp; \
-    curl -L https://github.com/docker/compose/releases/download/1.4.2/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose &amp;&amp; \
-    chmod +x /usr/local/bin/docker-compose &amp;&amp; \
-    apt-get -y install python-pip
-    git clone https://github.com/Dockerizing/dockerizing-bootstrap
-    cd dockerizing-bootstrap
+    sudo apt-get update && \
+    apt-get -y install docker.io && \
+    curl -L https://github.com/docker/compose/releases/download/1.4.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && \
+    chmod +x /usr/local/bin/docker-compose && \
+    apt-get -y install python-pip && \
+    git clone https://github.com/Dockerizing/dockerizing-bootstrap && \
+    cd dockerizing-bootstrap && \
     sudo pip install -Ur requirements.txt
 
 
