@@ -29,12 +29,6 @@ span.comment {
     color: #fff;
 }
 
-p a:before {
-  font-family: 'Glyphicons Halflings';
-  content: "\e127";
-  padding-right: .25em;
-}
-
 footer h2 {
     font-size: 16pt;
 }
